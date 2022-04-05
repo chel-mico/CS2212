@@ -61,7 +61,7 @@ public class UserCredentials {
 			String hashString = String.valueOf(hashValue);
 			String encryptedPass = "";
 			for (int x = hashString.length(); x != 1; x-=1) {
-				encryptedPass += (Character.toString(hashString.charAt(x-1) * 4) + Character.toString(hashString.charAt(x-2) * 2));
+				encryptedPass += (Character.toString((char) (hashString.charAt(x-1) * 4)) + Character.toString((char) (hashString.charAt(x-2) * 2)));
 			}
 			
 			// Returns the encrypted password
