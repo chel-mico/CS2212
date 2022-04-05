@@ -28,6 +28,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import cryptoTrader.utils.BrokerHandler;
 import cryptoTrader.utils.DataVisualizationCreator;
 
 public class MainUI extends JFrame implements ActionListener {
@@ -45,6 +46,7 @@ public class MainUI extends JFrame implements ActionListener {
 	// Alert Factory to create a pop-up if an error is shown
 	private AlertFactory alertFactory = AlertFactory.getInstance();
 	
+	private BrokerHandler brokerHandler = new BrokerHandler();
 	// ArrayList holding Brokers, starts out empty
 	public static MainUI getInstance() {
 		if (instance == null)
@@ -162,10 +164,16 @@ public class MainUI extends JFrame implements ActionListener {
 					}
 					String strategyName = strategyObject.toString();
 					
-					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
+					boolean addResult = brokerHandler.addBroker(traderName, coinNames, strategyName);
+					if (!addResult) {
+						alertFactory.getAlert("brokerExist");
+					}
+					//System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
+					
 	        }
 			stats.removeAll();
 			DataVisualizationCreator creator = new DataVisualizationCreator();
+			System.out.println(brokerHandler);
 			creator.createCharts();
 		} else if ("addTableRow".equals(command)) {
 			dtm.addRow(new String[3]);

@@ -43,6 +43,11 @@ public class AlertFactory {
 		if (popType.equals("emptyStrategy")) {
 			return new EmptyError("strategy name");
 		}
+		
+		// Returns an error telling the user to fill the strategy section
+		if (popType.equals("brokerExist")) {
+			return new ExistException();
+		}
 		// Return null by default
 		return null;
 		
