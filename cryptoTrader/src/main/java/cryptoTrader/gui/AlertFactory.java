@@ -29,6 +29,20 @@ public class AlertFactory {
 			return new LoginError();
 		}
 		
+		// Returns an error telling the user to fill the trade section
+		if (popType.equals("emptyTrade")) {
+			return new EmptyError("trading client");
+		}
+		
+		// Returns an error telling the user to fill the coin list section
+		if (popType.equals("emptyList")) {
+			return new EmptyError("coin list");
+		}
+		
+		// Returns an error telling the user to fill the strategy section
+		if (popType.equals("emptyStrategy")) {
+			return new EmptyError("strategy name");
+		}
 		// Return null by default
 		return null;
 		

@@ -10,14 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- * 
- * @author Group 34
- * A pop up that alerts the user they entered the wrong login information
- *
- */
-public class LoginError extends JFrame implements  Alert, ActionListener {
-	
+public class EmptyError extends JFrame implements  Alert, ActionListener {
+
 	// Top part of the menu that tells the user why they received a pop-up
 	JLabel alertMessage;
 	JPanel alertPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -31,14 +25,14 @@ public class LoginError extends JFrame implements  Alert, ActionListener {
 	 * @param title The title of the pop-up window
 	 * @param message The message shown on the pop-up window
 	 */
-	public LoginError() {
+	public EmptyError(String errorType) {
 		
 		// Sets the window size
-		super.setSize(250, 100);
+		super.setSize(400, 100);
 		super.setResizable(false);
 		
 		// Sets the title and message of the window
-		setMessage("Error", "Invalid login info!");
+		setMessage(errorType, "Please fill in the empty section(s)!");
 		super.add(alertPanel, BorderLayout.PAGE_START);
 		
 		// Add an eventListener to the button and to the window
@@ -57,7 +51,7 @@ public class LoginError extends JFrame implements  Alert, ActionListener {
 	 * @param message The message shown on the pop-up window
 	 */
 	public void setMessage(String title, String message) {
-		this.setTitle(title);
+		this.setTitle("Empty " + title + "!");
 		alertMessage = new JLabel(message);
 		alertPanel.add(alertMessage);
 	}
@@ -77,3 +71,4 @@ public class LoginError extends JFrame implements  Alert, ActionListener {
 	}
 	
 }
+

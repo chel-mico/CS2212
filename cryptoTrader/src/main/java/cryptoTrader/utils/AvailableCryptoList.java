@@ -110,5 +110,12 @@ public class AvailableCryptoList {
 	public String getCryptoID(String cryptoName) {
 		return availableCryptosMap.get(cryptoName);
 	}
+	
+	public static void main(String[] args) {
+		AvailableCryptoList list = AvailableCryptoList.getInstance();
+		for(String line : list.getAvailableCryptos()) {
+			System.out.println(line);
+		}
+	}
 
 }

@@ -54,6 +54,9 @@ public class MainUI extends JFrame implements ActionListener {
 	private DefaultTableModel dtm;
 	private JTable table;
 
+	// Alert Factory to create a pop-up if an error is shown
+	AlertFactory alertFactory = AlertFactory.getInstance();
+	
 	public static MainUI getInstance() {
 		if (instance == null)
 			instance = new MainUI();
@@ -70,38 +73,6 @@ public class MainUI extends JFrame implements ActionListener {
 
 
 		JPanel north = new JPanel();
-
-//		north.add(strategyList);
-
-		// Set bottom bar
-//		JLabel from = new JLabel("From");
-//		UtilDateModel dateModel = new UtilDateModel();
-//		Properties p = new Properties();
-//		p.put("text.today", "Today");
-//		p.put("text.month", "Month");
-//		p.put("text.year", "Year");
-//		JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, p);
-//		@SuppressWarnings("serial")
-//		JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new AbstractFormatter() {
-//			private String datePatern = "dd/MM/yyyy";
-//
-//			private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePatern);
-//
-//			@Override
-//			public Object stringToValue(String text) throws ParseException {
-//				return dateFormatter.parseObject(text);
-//			}
-//
-//			@Override
-//			public String valueToString(Object value) throws ParseException {
-//				if (value != null) {
-//					Calendar cal = (Calendar) value;
-//					return dateFormatter.format(cal.getTime());
-//				}
-//
-//				return "";
-//			}
-//		});
 
 		JButton trade = new JButton("Perform Trade");
 		trade.setActionCommand("refresh");
@@ -183,19 +154,19 @@ public class MainUI extends JFrame implements ActionListener {
 			for (int count = 0; count < dtm.getRowCount(); count++){
 					Object traderObject = dtm.getValueAt(count, 0);
 					if (traderObject == null) {
-						JOptionPane.showMessageDialog(this, "please fill in Trader name on line " + (count + 1) );
+						alertFactory.getAlert("emptyTrade");
 						return;
 					}
 					String traderName = traderObject.toString();
 					Object coinObject = dtm.getValueAt(count, 1);
 					if (coinObject == null) {
-						JOptionPane.showMessageDialog(this, "please fill in cryptocoin list on line " + (count + 1) );
+						alertFactory.getAlert("emptyList");
 						return;
 					}
 					String[] coinNames = coinObject.toString().split(",");
 					Object strategyObject = dtm.getValueAt(count, 2);
 					if (strategyObject == null) {
-						JOptionPane.showMessageDialog(this, "please fill in strategy name on line " + (count + 1) );
+						alertFactory.getAlert("emptyStrategy");
 						return;
 					}
 					String strategyName = strategyObject.toString();
