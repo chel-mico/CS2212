@@ -28,25 +28,25 @@ public class Login extends JFrame implements ActionListener {
 	private static Login instance = new Login();
 	
 	// Top part of the menu that gives the user instructions
-	JPanel loginPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-	JLabel loginLabel = new JLabel("Please fill in your crendentials.");
+	private JPanel loginPanel;
+	private JLabel loginLabel;
 	
 	// The Login menu uses the Grid Bag layout so it looks like a traditional login screen
-	GridBagConstraints gbc = new GridBagConstraints();
-	JPanel infoPanel = new JPanel(new GridBagLayout());
+	private GridBagConstraints gbc;
+	private JPanel infoPanel;
 	
 	// Middle part of the menu where the user inputs their login information
-	JLabel userLabel = new JLabel("User:");
-	JTextField userField = new JTextField(15);
-	JLabel passLabel = new JLabel("Password:");
-	JPasswordField passField = new JPasswordField(15);
+	private JLabel userLabel;
+	private JTextField userField;
+	private JLabel passLabel;
+	private JPasswordField passField;
 	
 	// Bottom part of the menu where the user can confirm their login with a click of a button
-	JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-	JButton loginButton = new JButton("Login");
+	private JPanel buttonPanel;
+	private JButton loginButton;
 	
 	// Alert Factory to create a pop-up if an error is shown
-	AlertFactory alertFactory = AlertFactory.getInstance();
+	private static AlertFactory alertFactory;
 	/**
 	 * The class constructor. Private because only one instance.
 	 */
@@ -56,6 +56,24 @@ public class Login extends JFrame implements ActionListener {
 		super("Login Menu");
 		super.setSize(400, 200);
 		super.setResizable(false);
+		
+		// Continues to instantiate those previously declared
+		
+		loginPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		loginLabel = new JLabel("Please fill in your crendentials.");
+		
+		gbc = new GridBagConstraints();
+		infoPanel = new JPanel(new GridBagLayout());
+		
+		userLabel = new JLabel("User:");
+		userField = new JTextField(15);
+		passLabel = new JLabel("Password:");
+		passField = new JPasswordField(15);
+		
+		buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		loginButton = new JButton("Login");
+		
+		alertFactory = AlertFactory.getInstance();
 		
 		// Set the layout of the menu as I described during instantiation
 		loginPanel.add(loginLabel);

@@ -39,24 +39,13 @@ public class MainUI extends JFrame implements ActionListener {
 	private static MainUI instance;
 	private JPanel stats, chartPanel, tablePanel;
 
-	// Should be a reference to a separate object in actual implementation
-	private List<String> selectedList;
-
-	private JTextArea selectedTickerList;
-//	private JTextArea tickerList;
-	private JTextArea tickerText;
-	private JTextArea BrokerText;
-	private JComboBox<String> strategyList;
-	private Map<String, List<String>> brokersTickers = new HashMap<>();
-	private Map<String, String> brokersStrategies = new HashMap<>();
-	private List<String> selectedTickers = new ArrayList<>();
-	private String selectedStrategy = "";
 	private DefaultTableModel dtm;
 	private JTable table;
 
 	// Alert Factory to create a pop-up if an error is shown
-	AlertFactory alertFactory = AlertFactory.getInstance();
+	private AlertFactory alertFactory = AlertFactory.getInstance();
 	
+	// ArrayList holding Brokers, starts out empty
 	public static MainUI getInstance() {
 		if (instance == null)
 			instance = new MainUI();
@@ -158,18 +147,21 @@ public class MainUI extends JFrame implements ActionListener {
 						return;
 					}
 					String traderName = traderObject.toString();
+					
 					Object coinObject = dtm.getValueAt(count, 1);
 					if (coinObject == null) {
 						alertFactory.getAlert("emptyList");
 						return;
 					}
 					String[] coinNames = coinObject.toString().split(",");
+					
 					Object strategyObject = dtm.getValueAt(count, 2);
 					if (strategyObject == null) {
 						alertFactory.getAlert("emptyStrategy");
 						return;
 					}
 					String strategyName = strategyObject.toString();
+					
 					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
 	        }
 			stats.removeAll();

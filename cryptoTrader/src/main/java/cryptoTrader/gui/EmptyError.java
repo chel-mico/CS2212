@@ -13,12 +13,12 @@ import javax.swing.JPanel;
 public class EmptyError extends JFrame implements  Alert, ActionListener {
 
 	// Top part of the menu that tells the user why they received a pop-up
-	JLabel alertMessage;
-	JPanel alertPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	private JLabel alertMessage;
+	private JPanel alertPanel;
 	
 	// Bottom part of the menu where the user can close the pop-up
-	JButton confirmButton = new JButton("Ok");
-	JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+	private JButton confirmButton;
+	private JPanel buttonPanel;
 	
 	/**
 	 * The class constructor
@@ -30,6 +30,11 @@ public class EmptyError extends JFrame implements  Alert, ActionListener {
 		// Sets the window size
 		super.setSize(400, 100);
 		super.setResizable(false);
+		
+		// Continues to instantiate those previously declared
+		alertPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		confirmButton = new JButton("Ok");
+		buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
 		// Sets the title and message of the window
 		setMessage(errorType, "Please fill in the empty section(s)!");
