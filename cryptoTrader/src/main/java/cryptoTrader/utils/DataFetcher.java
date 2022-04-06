@@ -86,7 +86,7 @@ public class DataFetcher {
 		double marketCap = fetcher.getMarketCapForCoin("bitcoin", "08-09-2021");
 		double volume = fetcher.getVolumeForCoin("bitcoin", "08-09-2021");
 		
-		System.out.println("Bitcoin=>\tPrice: " + price + 
+		System.out.println("Bitcoin=>\tPrice in CAD: " + price +
 								"\n\t\tMarket Cap: " + marketCap + 
 								"\n\t\tVolume: "+volume);
 		

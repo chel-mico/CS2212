@@ -30,11 +30,13 @@ import javax.swing.table.TableColumn;
 
 import cryptoTrader.utils.BrokerHandler;
 import cryptoTrader.utils.DataVisualizationCreator;
-
+/**
+ * Main method of trader; Singleton design
+ * Under the Model-View-Controller philosophy, this serves as the Facade between the backend and the user
+ * @author Group34
+ */
 public class MainUI extends JFrame implements ActionListener {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	private static MainUI instance;
