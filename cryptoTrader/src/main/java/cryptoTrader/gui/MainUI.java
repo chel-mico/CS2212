@@ -5,11 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -19,11 +15,9 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -61,15 +55,11 @@ public class MainUI extends JFrame implements ActionListener {
 		super("Crypto Trading Tool");
 
 		// Set top bar
-
-
 		JPanel north = new JPanel();
 
 		JButton trade = new JButton("Perform Trade");
 		trade.setActionCommand("refresh");
 		trade.addActionListener(this);
-
-
 
 		JPanel south = new JPanel();
 		
@@ -77,7 +67,6 @@ public class MainUI extends JFrame implements ActionListener {
 
 		dtm = new DefaultTableModel(new Object[] { "Trading Client", "Coin List", "Strategy Name" }, 1);
 		table = new JTable(dtm);
-		// table.setPreferredSize(new Dimension(600, 300));
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Trading Client Actions",
 				TitledBorder.CENTER, TitledBorder.TOP));
@@ -87,6 +76,7 @@ public class MainUI extends JFrame implements ActionListener {
 		strategyNames.add("Strategy-B");
 		strategyNames.add("Strategy-C");
 		strategyNames.add("Strategy-D");
+		
 		TableColumn strategyColumn = table.getColumnModel().getColumn(2);
 		JComboBox comboBox = new JComboBox(strategyNames);
 		strategyColumn.setCellEditor(new DefaultCellEditor(comboBox));
@@ -102,17 +92,13 @@ public class MainUI extends JFrame implements ActionListener {
 		
 
 		JPanel east = new JPanel();
-//		east.setLayout();
 		east.setLayout(new BoxLayout(east, BoxLayout.Y_AXIS));
-//		east.add(table);
 		east.add(scrollPane);
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new BoxLayout(buttons, BoxLayout.X_AXIS));
 		buttons.add(addRow);
 		buttons.add(remRow);
 		east.add(buttons);
-//		east.add(selectedTickerListLabel);
-//		east.add(selectedTickersScrollPane);
 
 		// Set charts region
 		JPanel west = new JPanel();
@@ -139,45 +125,61 @@ public class MainUI extends JFrame implements ActionListener {
 	}
 
 	@Override
+	/**
+	 * Action handler for the main UI.
+	 * @param e The current event the program has queued up
+	 */
 	public void actionPerformed(ActionEvent e) {
 		String command = e.getActionCommand();
+		// When the perform trade is selected, check if every row has valid data
 		if ("refresh".equals(command)) {
 			for (int count = 0; count < dtm.getRowCount(); count++){
+					// Requires the user to fill in the Broker name section
 					Object traderObject = dtm.getValueAt(count, 0);
 					if (traderObject == null) {
-						alertFactory.getAlert("emptyTrade");
+						alertFactory.getAlert("emptyTrade", count);
 						return;
 					}
 					String traderName = traderObject.toString();
 					
+					// Requires the user to fill in the coin list section
 					Object coinObject = dtm.getValueAt(count, 1);
 					if (coinObject == null) {
-						alertFactory.getAlert("emptyList");
+						alertFactory.getAlert("emptyList", count);
 						return;
 					}
 					String[] coinNames = coinObject.toString().split(",");
 					
+					// Requires the user to choose a strategy or choose none
 					Object strategyObject = dtm.getValueAt(count, 2);
 					if (strategyObject == null) {
-						alertFactory.getAlert("emptyStrategy");
+						alertFactory.getAlert("emptyStrategy", count);
 						return;
 					}
 					String strategyName = strategyObject.toString();
 					
+					// Adds the Broker if same name doesn't exist
 					boolean addResult = brokerHandler.addBroker(traderName, coinNames, strategyName);
 					if (!addResult) {
 						alertFactory.getAlert("brokerExist");
+						return;
 					}
-					//System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
+					
+					// Debugging line, remove after
+					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
 					
 	        }
+			// Recreate the visual graphs
 			stats.removeAll();
 			DataVisualizationCreator creator = new DataVisualizationCreator();
-			System.out.println(brokerHandler);
 			creator.createCharts();
-		} else if ("addTableRow".equals(command)) {
+		} 
+		// Adds a new table row when button is clicked
+		else if ("addTableRow".equals(command)) {
 			dtm.addRow(new String[3]);
-		} else if ("remTableRow".equals(command)) {
+		} 
+		// Removes a selected row when button is clicked
+		else if ("remTableRow".equals(command)) {
 			int selectedRow = table.getSelectedRow();
 			if (selectedRow != -1)
 				dtm.removeRow(selectedRow);

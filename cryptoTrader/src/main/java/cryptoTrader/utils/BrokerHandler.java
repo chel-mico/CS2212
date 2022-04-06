@@ -13,18 +13,29 @@ public class BrokerHandler {
 	public boolean addBroker(String name, String[] coins, String strategy) {
 		// Check if broker already exists
 		for (int x = 0; x < brokers.size(); x++) {
-			if (brokers.get(x).getName().equals(name)) {
+			if (brokers.get(x).getName().toLowerCase().equals(name)) {
 				return false;
 			}
 		}
-		brokers.add(new Broker(name, coins, strategy));
+		brokers.add(new Broker(name.toLowerCase(), coins, strategy));
 		return true;
 	}
 	
+	public void removeBroker(int index) {
+		brokers.remove(index);
+	}
+	
+	public void removeBroker(String name) {
+		for (int x = 0; x < brokers.size(); x++) {
+			if (brokers.get(x).getName().toLowerCase().equals(name)) {
+				brokers.remove(x);
+			}
+		}
+	}
 	public String toString() {
 		String tempString = "";
 		for (int x = 0; x < brokers.size(); x++) {
-			tempString += brokers.get(x).getName();
+			tempString += brokers.get(x).getName() + "\n";
 		}
 		return tempString;
 	}

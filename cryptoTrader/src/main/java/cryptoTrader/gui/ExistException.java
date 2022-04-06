@@ -43,7 +43,7 @@ public class ExistException extends JFrame implements Alert, ActionListener {
 		buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
 		// Sets the title and message of the window
-		setMessage("Broker exists!", "Please choose another name.");
+		setMessage("Broker exists!", "Two brokers have the same name. Please correct this.");
 		super.add(alertPanel, BorderLayout.PAGE_START);
 		
 		// Add an eventListener to the button and to the window

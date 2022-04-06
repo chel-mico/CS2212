@@ -25,7 +25,7 @@ public class EmptyError extends JFrame implements  Alert, ActionListener {
 	 * @param title The title of the pop-up window
 	 * @param message The message shown on the pop-up window
 	 */
-	public EmptyError(String errorType) {
+	public EmptyError(String errorType, int row) {
 		
 		// Sets the window size
 		super.setSize(400, 100);
@@ -37,7 +37,7 @@ public class EmptyError extends JFrame implements  Alert, ActionListener {
 		buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		
 		// Sets the title and message of the window
-		setMessage(errorType, "Please fill in the empty section(s)!");
+		setMessage(errorType, "Please fill in the empty column in row " + row + "!");
 		super.add(alertPanel, BorderLayout.PAGE_START);
 		
 		// Add an eventListener to the button and to the window
