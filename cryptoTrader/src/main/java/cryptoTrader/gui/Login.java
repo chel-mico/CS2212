@@ -15,6 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import cryptoTrader.utils.UserCredentials;
+import cryptoTrader.utils.UserCredentialsProxy;
 import cryptoTrader.gui.MainUI;
 
 /**
@@ -125,7 +126,7 @@ public class Login extends JFrame implements ActionListener {
 	public void verifyUser(String username, String password) {
 		
 		// Encrypts the given password and checks if there is a match
-		UserCredentials userCredentials = UserCredentials.getInstance();
+		UserCredentialsProxy userCredentials = UserCredentialsProxy.getInstance();
 		String checkedPassword = userCredentials.encrypt(password);
 		String hashedPassword = userCredentials.fetchUser(username);
 		

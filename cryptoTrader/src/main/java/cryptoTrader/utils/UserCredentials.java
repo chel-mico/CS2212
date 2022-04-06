@@ -16,7 +16,7 @@ import cryptoTrader.gui.Login;
  * contains the Login information.
  *
  */
-public class UserCredentials {
+public class UserCredentials implements UserCredentialsInterface {
 
 	// Following the singleton design pattern, only one instance of the UserCredentials is needed
 	private static UserCredentials instance = new UserCredentials();
