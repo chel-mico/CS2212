@@ -171,7 +171,6 @@ public class MainUI extends JFrame implements ActionListener {
 		Login login = Login.getInstance();
 	}
 
-	@Override
 	/**
 	 * Action handler for the main UI's buttons.
 	 * @param e The current event the program has queued up
