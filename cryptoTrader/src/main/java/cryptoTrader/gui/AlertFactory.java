@@ -17,6 +17,11 @@ public class AlertFactory {
 	// Following the singleton design pattern, only one instance of the login menu is needed
 	private static AlertFactory instance = new AlertFactory();
 	
+	/**
+	 * Returns a pop up window based on the parameter
+	 * @param popType The type of pop-up
+	 * @return The created pop-up
+	 */
 	public Alert getAlert(String popType) {
 		
 		// If given null type, don't instantiate any type of pop-up
@@ -37,6 +42,12 @@ public class AlertFactory {
 		return null;		
 	}
 	
+	/**
+	 * Returns a pop up window based on the parameter
+	 * @param popType The type of pop-up
+	 * @param row The Broker/row that caused the pop-up
+	 * @return The created pop-up
+	 */
 	public Alert getAlert(String popType, int row) {
 		// Returns an error telling the user to fill the trade section
 		if (popType.equals("emptyTrade")) {

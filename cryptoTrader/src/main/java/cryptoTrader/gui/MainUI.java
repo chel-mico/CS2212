@@ -5,7 +5,9 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -19,6 +21,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -38,10 +44,9 @@ public class MainUI extends JFrame implements ActionListener {
 	private JTable table;
 
 	// Alert Factory to create a pop-up if an error is shown
-	private AlertFactory alertFactory = AlertFactory.getInstance();
+	private AlertFactory alertFactory;
+	private BrokerHandler brokerHandler;
 	
-	private BrokerHandler brokerHandler = new BrokerHandler();
-	// ArrayList holding Brokers, starts out empty
 	public static MainUI getInstance() {
 		if (instance == null)
 			instance = new MainUI();
@@ -63,10 +68,25 @@ public class MainUI extends JFrame implements ActionListener {
 
 		JPanel south = new JPanel();
 		
+		alertFactory = AlertFactory.getInstance();
+		brokerHandler = new BrokerHandler();
+		
 		south.add(trade);
 
 		dtm = new DefaultTableModel(new Object[] { "Trading Client", "Coin List", "Strategy Name" }, 1);
 		table = new JTable(dtm);
+		
+		// Adds an actionListener to the table
+		table.getModel().addTableModelListener(new TableModelListener(){
+			public void tableChanged(TableModelEvent event) {
+				// Sanity check every cell that gets updated
+				if(event.getType() == event.UPDATE) {
+					validate(event.getFirstRow(), event.getColumn());
+				}
+			}
+				
+		});
+		
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Trading Client Actions",
 				TitledBorder.CENTER, TitledBorder.TOP));
@@ -120,55 +140,72 @@ public class MainUI extends JFrame implements ActionListener {
 		stats.revalidate();
 	}
 
+	/**
+	 * This method alerts the user if they leave a cell empty
+	 * @param row The row of the cell
+	 * @param col The column of the cell
+	 * @return The cell's value
+	 */
+	private Object validate(int row, int col) {
+		
+		Object selectedObject = dtm.getValueAt(row, col);
+		if (selectedObject == null || selectedObject.equals("")) {
+			// Different alert based on the type of cell
+			table.setRowSelectionInterval(row, row);
+			if (col == 0) {
+				alertFactory.getAlert("emptyTrade", row);
+			}
+			else if (col == 1) {
+				alertFactory.getAlert("emptyList", row);
+			}
+			else if (col == 2) {
+				alertFactory.getAlert("emptyStrategy", row);
+			}
+			return null;
+		}
+		return selectedObject;
+	}
 	public static void main(String[] args) {
 		Login login = Login.getInstance();
 	}
 
 	@Override
 	/**
-	 * Action handler for the main UI.
+	 * Action handler for the main UI's buttons.
 	 * @param e The current event the program has queued up
 	 */
 	public void actionPerformed(ActionEvent e) {
+		// Determine what type of command
 		String command = e.getActionCommand();
+		
+		// Array used to create the row
+		String[] rowValues = new String[3];
 		// When the perform trade is selected, check if every row has valid data
 		if ("refresh".equals(command)) {
-			for (int count = 0; count < dtm.getRowCount(); count++){
-					// Requires the user to fill in the Broker name section
-					Object traderObject = dtm.getValueAt(count, 0);
-					if (traderObject == null) {
-						alertFactory.getAlert("emptyTrade", count);
+			brokerHandler = new BrokerHandler();
+			for (int row = 0; row < dtm.getRowCount(); row++){
+				for (int col = 0; col < dtm.getColumnCount(); col++) {
+					Object columnValue = validate(row, col);
+					// If the cell is okay, then add it to the array used to create the row
+					if (columnValue != null) {
+						rowValues[col] = String.valueOf(columnValue);
+					}
+					// Check the next row if there are errors
+					else {
 						return;
 					}
-					String traderName = traderObject.toString();
-					
-					// Requires the user to fill in the coin list section
-					Object coinObject = dtm.getValueAt(count, 1);
-					if (coinObject == null) {
-						alertFactory.getAlert("emptyList", count);
-						return;
-					}
-					String[] coinNames = coinObject.toString().split(",");
-					
-					// Requires the user to choose a strategy or choose none
-					Object strategyObject = dtm.getValueAt(count, 2);
-					if (strategyObject == null) {
-						alertFactory.getAlert("emptyStrategy", count);
-						return;
-					}
-					String strategyName = strategyObject.toString();
-					
-					// Adds the Broker if same name doesn't exist
-					boolean addResult = brokerHandler.addBroker(traderName, coinNames, strategyName);
-					if (!addResult) {
-						alertFactory.getAlert("brokerExist");
-						return;
-					}
-					
-					// Debugging line, remove after
-					System.out.println(traderName + " " + Arrays.toString(coinNames) + " " + strategyName);
-					
-	        }
+				}
+				// Adds the Broker if same name doesn't exist
+				List<String> coinList = new ArrayList<String>();
+				coinList = Arrays.asList(rowValues[1].split("\\s*,\\s*"));
+				boolean addResult = brokerHandler.addBroker(rowValues[0], coinList.toArray(), rowValues[2]);
+				if (!addResult) {
+					alertFactory.getAlert("brokerExist");
+				}	
+			}				
+			
+			// Debug line, remove this after
+			System.out.println(brokerHandler);	
 			// Recreate the visual graphs
 			stats.removeAll();
 			DataVisualizationCreator creator = new DataVisualizationCreator();
