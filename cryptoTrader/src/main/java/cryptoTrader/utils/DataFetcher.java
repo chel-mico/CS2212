@@ -16,7 +16,7 @@ public class DataFetcher {
 	private JsonObject getDataForCrypto(String id, String date) {
 		String urlString = String.format(
 				"https://api.coingecko.com/api/v3/coins/%s/history?date=%s", id, date);
-		
+		//Attempt connection and create Json object
 		try {
 			URL url = new URL(urlString);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -39,7 +39,13 @@ public class DataFetcher {
 		}
 		return null;
 	}
-	
+
+	/**
+	 * Obtain price for coins at a certain date/time
+	 * @param id
+	 * @param date
+	 * @return price
+	 */
 	public double getPriceForCoin(String id, String date) {
 		double price = 0.0;
 		
@@ -52,7 +58,13 @@ public class DataFetcher {
 		
 		return price;
 	}
-	
+
+	/**
+	 * Obtain market cap for coins
+	 * @param id
+	 * @param date
+	 * @return marketCap
+	 */
 	public double getMarketCapForCoin(String id, String date) {
 		double marketCap = 0.0;
 		
@@ -65,7 +77,13 @@ public class DataFetcher {
 		
 		return marketCap;
 	}
-	
+
+	/**
+	 * Obtain volume of cryptocoins
+	 * @param id
+	 * @param date
+	 * @return volume
+	 */
 	public double getVolumeForCoin(String id, String date) {
 		double volume = 0.0;
 		
@@ -78,7 +96,11 @@ public class DataFetcher {
 		
 		return volume;
 	}
-	
+
+	/**
+	 * Main method that fetches coins
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		DataFetcher fetcher = new DataFetcher();
 		double price = fetcher.getPriceForCoin("bitcoin", "08-09-2021");
