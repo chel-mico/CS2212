@@ -28,7 +28,11 @@ import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 
 import cryptoTrader.gui.MainUI;
-
+/**
+ * Helper class to visualize all trades made
+ * @author Group 34
+ *
+ */
 public class DataVisualizationCreator {
 	/**
 	 * Create table and chart of trades

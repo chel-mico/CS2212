@@ -4,8 +4,16 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-
+/**
+ * Test 3-1 Trade Success
+ * @author Endreas Yohannes
+ *
+ */
 public class PerformTradeSuccess {
+	/**
+	 * Main method for the test
+	 * @param args
+	 */
 	public static void main (String args[]) {
 		LoginTestSuccess.main(null);
 		try {

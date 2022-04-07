@@ -4,8 +4,16 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-
+/**
+ * Test 2-1 Add Remover Broker Success
+ * @author Endreas Yohannes
+ *
+ */
 public class SuccessfulBrokerTestSuccess {
+	/**
+	 * Main method for the test
+	 * @param args
+	 */
 	public static void main (String args[]) {
 		LoginTestSuccess.main(null);
 		try {

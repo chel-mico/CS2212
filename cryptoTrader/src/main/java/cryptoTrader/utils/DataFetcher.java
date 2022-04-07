@@ -10,13 +10,22 @@ import java.util.Scanner;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
+/**
+ * Class to getch cryptocoin prices from CoinGecko API
+ * @author Victor Li
+ *
+ */
 public class DataFetcher {
-
+	/**
+	 * Helper method to make API calls to CoinGecko
+	 * @param id The id of the coin
+	 * @param date The current date
+	 * @return
+	 */
 	private JsonObject getDataForCrypto(String id, String date) {
 		String urlString = String.format(
 				"https://api.coingecko.com/api/v3/coins/%s/history?date=%s", id, date);
-		//Attempt connection and create Json object
+		
 		try {
 			URL url = new URL(urlString);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -39,12 +48,12 @@ public class DataFetcher {
 		}
 		return null;
 	}
-
+	
 	/**
-	 * Obtain price for coins at a certain date/time
-	 * @param id
-	 * @param date
-	 * @return price
+	 * Method to get the price for a coin
+	 * @param id The id of the coin
+	 * @param date The current date
+	 * @return
 	 */
 	public double getPriceForCoin(String id, String date) {
 		double price = 0.0;
@@ -58,12 +67,12 @@ public class DataFetcher {
 		
 		return price;
 	}
-
+	
 	/**
-	 * Obtain market cap for coins
-	 * @param id
-	 * @param date
-	 * @return marketCap
+	 * Method to get the market cap for a coin
+	 * @param id The id of the coin
+	 * @param date The current date
+	 * @return
 	 */
 	public double getMarketCapForCoin(String id, String date) {
 		double marketCap = 0.0;
@@ -77,12 +86,12 @@ public class DataFetcher {
 		
 		return marketCap;
 	}
-
+	
 	/**
-	 * Obtain volume of cryptocoins
-	 * @param id
-	 * @param date
-	 * @return volume
+	 * Method to get the total volume for a coin
+	 * @param id The id of the coin
+	 * @param date The current date
+	 * @return
 	 */
 	public double getVolumeForCoin(String id, String date) {
 		double volume = 0.0;
@@ -96,9 +105,9 @@ public class DataFetcher {
 		
 		return volume;
 	}
-
+	
 	/**
-	 * Main method that fetches coins
+	 * Main method for testing
 	 * @param args
 	 */
 	public static void main(String[] args) {
