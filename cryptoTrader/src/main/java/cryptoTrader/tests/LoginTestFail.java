@@ -7,7 +7,17 @@ import java.awt.event.KeyEvent;
 
 import cryptoTrader.gui.Login;
 
+/**
+ *  Testing login
+ *
+ */
+
 public class LoginTestFail {
+	/**
+	 * Login to program
+	 * @param args
+	 * @result Failure to login
+	 */
 	public static void main (String args[]) {
 		try {
 			Robot bot = new Robot();
