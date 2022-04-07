@@ -15,11 +15,11 @@ public class StrategyFactory {
     	case "Strategy-A" :
     		return new StrategyA();
     	case "Strategy-B" :
-    		return new StrategyA();
+    		return new StrategyB();
     	case "Strategy-C" :
-    		return new StrategyA();
+    		return new StrategyC();
     	case "Strategy-D" :
-    		return new StrategyA();
+    		return new StrategyD();
     	default :
     		return null;
     	}
