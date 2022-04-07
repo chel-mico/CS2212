@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class StrategyC extends Strategy {
 	public StrategyC() {
-		super("Strategy-A", new String[3], "dogecoin");
+		super("Strategy-C", new String[3], "dogecoin");
 		this.coins[0] = "ethereum";
 		this.coins[1] = "dogecoin";
 		// TODO Auto-generated constructor stub

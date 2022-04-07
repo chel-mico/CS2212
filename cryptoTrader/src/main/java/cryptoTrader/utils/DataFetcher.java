@@ -14,7 +14,7 @@ import com.google.gson.JsonParser;
 public class DataFetcher {
 
 	private JsonObject getDataForCrypto(String id, String date) {
-
+		System.out.println(id);
 		String urlString = String.format(
 				"https://api.coingecko.com/api/v3/coins/%s/history?date=%s", id, date);
 		

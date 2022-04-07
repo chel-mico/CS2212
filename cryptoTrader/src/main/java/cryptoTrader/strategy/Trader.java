@@ -11,11 +11,13 @@ public class Trader {
 	private ArrayList<Broker> brokers; //list of brokers to be consulted
 	private Map<String, Double> coinPrices; //saves prices for use throughout the trading process
 	private DataFetcher dataFetcher;
+	private String date;
 	
 	public Trader(ArrayList<Broker> brokers) {
 		this.brokers = brokers;
 		this.coinPrices = new HashMap<String, Double>();
 		this.dataFetcher = new DataFetcher();
+		this.date = "06-04-2022"; //date format is dd-mm-yyyy
 	}
 	
 	public Object[][] performTrade() {
@@ -23,7 +25,7 @@ public class Trader {
 		for (Broker broker : brokers) {
 			//fetch coins and prices and add to the currently saved prices
 			for (String coin : broker.getCoins()) {
-				coinPrices.put(coin, dataFetcher.getPriceForCoin(coin, "08-09-2022"));
+				coinPrices.put(coin, dataFetcher.getPriceForCoin(coin, date));
 			}
 		}
 		
@@ -38,7 +40,7 @@ public class Trader {
 						"Fail"/*buy/sell/fail*/,
 						"Null"/*quantity*/,
 						"Null",
-						"08-09-2022"
+						date
 					};
 					tradesListDynamic.add(trade);
 					continue;
@@ -79,7 +81,7 @@ public class Trader {
 					"Fail",
 					"Null",
 					"Null",
-					"08-09-2022"
+					date
 				};
 				tradesListDynamic.add(trade);
 			} else {
@@ -91,7 +93,7 @@ public class Trader {
 					buyOrSell,
 					result.get(buyOrSell).toString()/*quantity*/,
 					coinPrices.get(broker.getStrategy().getPurchasedCoin()).toString(),
-					"08-09-2022"
+					date
 				};
 				tradesListDynamic.add(trade);
 			}
