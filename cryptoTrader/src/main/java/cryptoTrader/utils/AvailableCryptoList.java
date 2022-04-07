@@ -13,12 +13,20 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+/**
+ *  Available list of Cryptocurrencies
+ * @author Group34
+ */
 public class AvailableCryptoList {
 	private static AvailableCryptoList instance = null;
 	
 	private Map<String, String> availableCryptosMap = new HashMap<>();
 	private List<String> availableCryptosList = new ArrayList<>();
-	
+
+	/**
+	 * New instance
+	 * @return instance
+	 */
 	public static AvailableCryptoList getInstance() {
 		if (instance == null)
 			instance = new AvailableCryptoList();

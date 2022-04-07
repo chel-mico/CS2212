@@ -40,7 +40,7 @@ public class Trader {
 				coinPrices.put(coin, dataFetcher.getPriceForCoin(coin, date));
 			}
 		}
-		
+		//Broker
 		for(Broker broker : brokers) {
 			//execute the appropriate strategy for each broker
 			for (String coin : broker.getCoins()) {
