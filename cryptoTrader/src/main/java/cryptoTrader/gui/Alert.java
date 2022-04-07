@@ -1,10 +1,9 @@
 package cryptoTrader.gui;
 
 /**
- * 
- * @author Group 34
- * An interface used to describe a window that alerts the user of something that happened in the program 
  *
+ * An interface used to describe a window that alerts the user of something that happened in the program 
+ *  @author Group 34
  */
 public interface Alert {
 	

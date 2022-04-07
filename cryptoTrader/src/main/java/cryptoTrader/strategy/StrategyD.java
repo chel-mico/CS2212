@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * Strategy D
+ * If Ethereum < $6,000 buy 5 Ethereum, else sell 5 ethereum
  */
 public class StrategyD extends Strategy {
 	public StrategyD() {

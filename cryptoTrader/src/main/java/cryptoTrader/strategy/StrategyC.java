@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * Trading Strategy C
+ * If Ethereum < $4,000 or Dogecoin < $0.4, buy 2000 dogecoin, else sell 1000 dogecoin
  */
 public class StrategyC extends Strategy {
 	public StrategyC() {

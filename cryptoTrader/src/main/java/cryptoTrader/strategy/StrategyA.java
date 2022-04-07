@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * Trading Strategy A
+ * If Bitcoin > $50,000 and Cardana < $100, buy 200 Cardano
+ * If not, buy 50 Cardano
  */
 public class StrategyA extends Strategy {
 

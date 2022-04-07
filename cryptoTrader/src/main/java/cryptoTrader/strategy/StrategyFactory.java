@@ -1,7 +1,7 @@
 package cryptoTrader.strategy;
 
 /**
- * Abstract factory class for factory implementation of strategies
+ * Factory class for factory implementation of strategies
  *
  */
 
@@ -9,8 +9,13 @@ public class StrategyFactory {
     public StrategyFactory() {
     	
     }
-    
-    public Strategy createStrategy(String name) {
+
+	/**
+	 * Creating strategy objects from within the factory method
+	 * @param name Name of Strategy
+	 * @return Strategy() Specified strategy
+	 */
+	public Strategy createStrategy(String name) {
     	switch(name) {
     	case "Strategy-A" :
     		return new StrategyA();
