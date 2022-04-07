@@ -190,7 +190,7 @@ public class MainUI extends JFrame implements ActionListener {
 					Object columnValue = validate(row, col);
 					// If the cell is okay, then add it to the array used to create the row
 					if (columnValue != null) {
-						rowValues[col] = String.valueOf(columnValue);
+						rowValues[col] = String.valueOf(dtm.getValueAt(row, col));
 					}
 					// Check the next row if there are errors
 					else {
@@ -203,18 +203,16 @@ public class MainUI extends JFrame implements ActionListener {
 				boolean addResult = brokerHandler.addBroker(rowValues[0], coinList.toArray(), rowValues[2]);
 				if (!addResult) {
 					alertFactory.getAlert("brokerExist");
-				}	
+				} else {
+					// Perform trades
+					Trader trader = new Trader(brokerHandler.getBrokers());
+					Object[][] trades = trader.performTrade();
+					// Recreate the visual graphs
+					stats.removeAll();
+					DataVisualizationCreator creator = new DataVisualizationCreator();
+					creator.createCharts(trades);
+				}
 			}				
-			
-			// Debug line, remove this after
-			System.out.println(brokerHandler);	
-			// Perform trades
-			Trader trader = new Trader(brokerHandler.getBrokers());
-			Object[][] trades = trader.performTrade();
-			// Recreate the visual graphs
-			stats.removeAll();
-			DataVisualizationCreator creator = new DataVisualizationCreator();
-			creator.createCharts(trades);
 		} 
 		// Adds a new table row when button is clicked
 		else if ("addTableRow".equals(command)) {
