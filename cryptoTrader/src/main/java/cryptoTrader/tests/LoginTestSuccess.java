@@ -6,16 +6,15 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 import cryptoTrader.gui.Login;
-
 /**
- * Testing login
+ * Test 1-1 Login Success
+ * @author Endreas Yohannes
+ *
  */
-
 public class LoginTestSuccess {
 	/**
-	 * Login to program
+	 * Main method for the test
 	 * @param args
-	 * @result Successful login
 	 */
 	public static void main (String args[]) {
 		try {
