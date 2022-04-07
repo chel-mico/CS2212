@@ -6,6 +6,9 @@ package cryptoTrader.strategy;
  */
 
 public class StrategyFactory {
+	/**
+	 * Constructor for StrategyFactory
+	 */
     public StrategyFactory() {
     	
     }

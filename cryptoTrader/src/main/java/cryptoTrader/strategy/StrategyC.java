@@ -15,6 +15,10 @@ public class StrategyC extends Strategy {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Executes Strategy C
+	 * @param prices prices of eth and dogecoin
+	 */
 	@Override
 	public Map<String, Integer> executeStrategy(Map<String, Double> prices) {
 		Map<String, Integer> trade = new HashMap<String, Integer>();

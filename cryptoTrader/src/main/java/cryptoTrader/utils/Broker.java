@@ -51,7 +51,12 @@ public class Broker {
 	public Strategy getStrategy() {
 		return strategy;
 	}
-	
+
+	/**
+	 * Accessor method to get strategy name
+	 * @return strategyName
+	 *
+	 */
 	public String getStrategyName() {
 		return strategy.getName();
 	}

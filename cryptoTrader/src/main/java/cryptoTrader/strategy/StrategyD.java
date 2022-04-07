@@ -14,6 +14,10 @@ public class StrategyD extends Strategy {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Executes strategy D
+	 * @param prices prices of ethereum
+	 */
 	@Override
 	public Map<String, Integer> executeStrategy(Map<String, Double> prices) {
 		Map<String, Integer> trade = new HashMap<String, Integer>();

@@ -17,6 +17,11 @@ public class StrategyA extends Strategy {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * Executes strategy A
+	 * @param prices prices of bitcoin and cardano
+	 * @return trade
+	 */
 	@Override
 	public Map<String, Integer> executeStrategy(Map<String, Double> prices) {
 		Map<String, Integer> trade = new HashMap<String, Integer>();
