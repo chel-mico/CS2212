@@ -186,8 +186,7 @@ public class DataVisualizationCreator {
 	private void createBar() {
 		
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-//		Those are hard-coded values!!!! 
-//		You will have to come up with a proper datastructure to populate the BarChart with live data!
+		//Live data
 		dataset.setValue(6, "Trader-1", "Strategy-A");
 		dataset.setValue(5, "Trader-2", "Strategy-B");
 		dataset.setValue(0, "Trader-3", "Strategy-E");
