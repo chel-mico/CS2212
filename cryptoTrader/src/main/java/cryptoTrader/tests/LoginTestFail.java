@@ -6,8 +6,16 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 import cryptoTrader.gui.Login;
-
+/**
+ * Test ID 1-2 Login Failure
+ * @author Endreas Yohannes
+ *
+ */
 public class LoginTestFail {
+	/**
+	 * Main method for the test
+	 * @param args
+	 */
 	public static void main (String args[]) {
 		try {
 			Robot bot = new Robot();

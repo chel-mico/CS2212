@@ -6,8 +6,16 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
 import cryptoTrader.gui.Login;
-
+/**
+ * Test 1-1 Login Success
+ * @author Endreas Yohannes
+ *
+ */
 public class LoginTestSuccess {
+	/**
+	 * Main method for the test
+	 * @param args
+	 */
 	public static void main (String args[]) {
 		try {
 			Robot bot = new Robot();
