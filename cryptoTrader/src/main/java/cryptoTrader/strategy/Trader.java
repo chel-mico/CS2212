@@ -7,12 +7,20 @@ import java.util.Map;
 import cryptoTrader.utils.Broker;
 import cryptoTrader.utils.DataFetcher;
 
+/**
+ * Trader class
+ */
 public class Trader {
 	private ArrayList<Broker> brokers; //list of brokers to be consulted
 	private Map<String, Double> coinPrices; //saves prices for use throughout the trading process
 	private DataFetcher dataFetcher;
 	private String date;
-	
+
+	/**
+	 * Trader constructor
+	 * @param brokers
+	 *
+	 */
 	public Trader(ArrayList<Broker> brokers) {
 		this.brokers = brokers;
 		this.coinPrices = new HashMap<String, Double>();
@@ -72,7 +80,8 @@ public class Trader {
 				result.put("Fail", 0);
 				break;
 			}
-			
+
+			//null returns
 			if (result.containsKey("Fail")) {
 				String[] trade = {
 					broker.getName(),

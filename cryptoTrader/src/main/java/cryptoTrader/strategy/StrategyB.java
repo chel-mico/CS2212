@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * Trading Strategy B
+ * If Bitcoin < $60,000 buy 1 Bitcoin, else sell 1 Bitcoin
  */
 public class StrategyB extends Strategy {
 	public StrategyB() {

@@ -4,11 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
+ * Strategy D
+ * If Ethereum < $6,000 buy 5 Ethereum, else sell 5 ethereum
  */
 public class StrategyD extends Strategy {
 	public StrategyD() {
-		super("Strategy-D", new String[3], "ehtereum");
+		super("Strategy-A", new String[3], "ethereum");
 		this.coins[0] = "ethereum";
 		// TODO Auto-generated constructor stub
 	}
