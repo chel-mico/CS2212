@@ -10,9 +10,18 @@ import java.util.Scanner;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
+/**
+ * Class to getch cryptocoin prices from CoinGecko API
+ * @author Victor Li
+ *
+ */
 public class DataFetcher {
-
+	/**
+	 * Helper method to make API calls to CoinGecko
+	 * @param id The id of the coin
+	 * @param date The current date
+	 * @return
+	 */
 	private JsonObject getDataForCrypto(String id, String date) {
 		String urlString = String.format(
 				"https://api.coingecko.com/api/v3/coins/%s/history?date=%s", id, date);
@@ -40,6 +49,12 @@ public class DataFetcher {
 		return null;
 	}
 	
+	/**
+	 * Method to get the price for a coin
+	 * @param id The id of the coin
+	 * @param date The current date
+	 * @return
+	 */
 	public double getPriceForCoin(String id, String date) {
 		double price = 0.0;
 		
@@ -53,6 +68,12 @@ public class DataFetcher {
 		return price;
 	}
 	
+	/**
+	 * Method to get the market cap for a coin
+	 * @param id The id of the coin
+	 * @param date The current date
+	 * @return
+	 */
 	public double getMarketCapForCoin(String id, String date) {
 		double marketCap = 0.0;
 		
@@ -66,6 +87,12 @@ public class DataFetcher {
 		return marketCap;
 	}
 	
+	/**
+	 * Method to get the total volume for a coin
+	 * @param id The id of the coin
+	 * @param date The current date
+	 * @return
+	 */
 	public double getVolumeForCoin(String id, String date) {
 		double volume = 0.0;
 		
@@ -79,6 +106,10 @@ public class DataFetcher {
 		return volume;
 	}
 	
+	/**
+	 * Main method for testing
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		DataFetcher fetcher = new DataFetcher();
 		double price = fetcher.getPriceForCoin("bitcoin", "08-09-2021");
