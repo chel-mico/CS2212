@@ -3,6 +3,8 @@ package cryptoTrader.utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import cryptoTrader.strategy.StrategyFactory;
+
 /**
  * A list that holds all the Broker information
  * @author Group 34
@@ -36,7 +38,8 @@ public class BrokerHandler {
 		}
 		// Convert coin list which is a list into a string array
 		String[] stringCoins = Arrays.copyOf(coins, coins.length, String[].class);
-		brokers.add(new Broker(name, stringCoins, strategy));
+		StrategyFactory strategyFactory = new StrategyFactory();
+		brokers.add(new Broker(name, stringCoins, strategyFactory.createStrategy(strategy)));
 		return true;
 	}
 	
@@ -58,6 +61,10 @@ public class BrokerHandler {
 				brokers.remove(x);
 			}
 		}
+	}
+	
+	public ArrayList<Broker> getBrokers() {
+		return brokers;
 	}
 	
 	/**

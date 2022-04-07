@@ -31,9 +31,9 @@ import cryptoTrader.gui.MainUI;
 
 public class DataVisualizationCreator {
 	
-	public void createCharts() {
+	public void createCharts(Object[][] trades) {
 //		createTextualOutput();
-		createTableOutput();
+		createTableOutput(trades);
 //		createTimeSeries();
 //		createScatter();
 		createBar();
@@ -58,7 +58,7 @@ public class DataVisualizationCreator {
 //		MainUI.getInstance().updateStats(scrollPane);
 	}
 	
-	private void createTableOutput() {
+	private void createTableOutput(Object[][] trades) {
 		// Dummy dates for demo purposes. These should come from selection menu
 		Object[] columnNames = {"Trader","Strategy","CryptoCoin","Action","Quantity","Price","Date"};
 		

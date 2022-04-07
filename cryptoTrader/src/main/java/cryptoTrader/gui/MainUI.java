@@ -28,6 +28,7 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import cryptoTrader.strategy.Trader;
 import cryptoTrader.utils.BrokerHandler;
 import cryptoTrader.utils.DataVisualizationCreator;
 /**
@@ -207,10 +208,13 @@ public class MainUI extends JFrame implements ActionListener {
 			
 			// Debug line, remove this after
 			System.out.println(brokerHandler);	
+			// Perform trades
+			Trader trader = new Trader(brokerHandler.getBrokers());
+			Object[][] trades = trader.performTrade();
 			// Recreate the visual graphs
 			stats.removeAll();
 			DataVisualizationCreator creator = new DataVisualizationCreator();
-			creator.createCharts();
+			creator.createCharts(trades);
 		} 
 		// Adds a new table row when button is clicked
 		else if ("addTableRow".equals(command)) {

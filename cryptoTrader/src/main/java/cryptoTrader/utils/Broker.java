@@ -2,6 +2,8 @@ package cryptoTrader.utils;
 
 import java.util.List;
 
+import cryptoTrader.strategy.Strategy;
+
 /**
  * A class representing a Broker, visualized as a row in the program
  * @author Group 34
@@ -12,7 +14,7 @@ public class Broker {
 	// Instantiate variables
 	private String name;
 	private String[] coins;
-	private String strategy;
+	private Strategy strategy;
 	
 	/**
 	 * Constructor function
@@ -20,7 +22,7 @@ public class Broker {
 	 * @param coins The coins the Broker is interested in
 	 * @param strategy The strategy the Broker selected
 	 */
-	public Broker(String name, String[] coins, String strategy) {
+	public Broker(String name, String[] coins, Strategy strategy) {
 		this.name = name;
 		this.coins = coins;
 		this.strategy = strategy;
@@ -46,7 +48,11 @@ public class Broker {
 	 * Accessor method to get the Broker's strategy
 	 * @return The strategy the Broker chose
 	 */
-	public String getStrategy() {
+	public Strategy getStrategy() {
 		return strategy;
+	}
+	
+	public String getStrategyName() {
+		return strategy.getName();
 	}
 }
