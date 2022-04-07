@@ -27,7 +27,11 @@ public class Trader {
 		this.dataFetcher = new DataFetcher();
 		this.date = "06-04-2022"; //date format is dd-mm-yyyy
 	}
-	
+
+	/**
+	 * Object that performs the trade
+	 *
+	 */
 	public Object[][] performTrade() {
 		ArrayList<String[]> tradesListDynamic = new ArrayList<String[]>();
 		for (Broker broker : brokers) {

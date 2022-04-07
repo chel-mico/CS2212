@@ -2,6 +2,7 @@
 
 This is a Cryptocurrency Broker Trading Application written in Java. 
 Currency used is Canadian Dollars. 
+
 MainUI.java contains the main method. 
 Implementation Document .pdf outlines the tests and meeting documentation involved.
 

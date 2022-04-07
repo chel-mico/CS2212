@@ -29,7 +29,10 @@ public class AvailableCryptoList {
 	private AvailableCryptoList() {
 		findAvailableCryptos();
 	}
-	
+
+	/**
+	 *  Call function for list query
+	 */
 	public void call() {
 		String urlString = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=IBM&apikey=VNEY4VV2AWF1EB51";
 		try {
@@ -64,7 +67,8 @@ public class AvailableCryptoList {
 			// TODO Auto-generated catch block e.printStackTrace();
 		}
 	}
-	
+
+	// Finds crypto from coingecko api
 	private void findAvailableCryptos() {
 
 		String urlString = 
@@ -102,15 +106,29 @@ public class AvailableCryptoList {
 			// TODO Auto-generated catch block e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Gets Crypto
+	 * @return cryptoList array
+	 */
 	public String[] getAvailableCryptos() {
 		return availableCryptosList.toArray(new String[availableCryptosList.size()]);
 	}
-	
+
+	/**
+	 * Gets cryptoID
+	 * @param cryptoName
+	 * @return cryptoID
+	 */
 	public String getCryptoID(String cryptoName) {
 		return availableCryptosMap.get(cryptoName);
 	}
-	
+
+	/**
+	 * Method to print crypto names
+	 *
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		AvailableCryptoList list = AvailableCryptoList.getInstance();
 		for(String line : list.getAvailableCryptos()) {

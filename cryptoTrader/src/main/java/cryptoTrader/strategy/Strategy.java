@@ -7,7 +7,6 @@ import java.util.Map;
  * Helps implement the Factory design pattern
  */
 
-
 public abstract class Strategy {
 	protected String name; 
 	protected String[] coins;
