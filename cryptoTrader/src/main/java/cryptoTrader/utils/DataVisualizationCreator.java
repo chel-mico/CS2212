@@ -30,7 +30,10 @@ import org.jfree.data.time.TimeSeriesCollection;
 import cryptoTrader.gui.MainUI;
 
 public class DataVisualizationCreator {
-	
+	/**
+	 * Create table and chart of trades
+	 * @param trades
+	 */
 	public void createCharts(Object[][] trades) {
 //		createTextualOutput();
 		createTableOutput(trades);
